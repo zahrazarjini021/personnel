@@ -10,7 +10,6 @@ public class PermissionToLeaveRequestDAOImpl implements PermissionToLeaveRequest
 
     private final List<PermissionToLeaveRequest> permissionToLeaveRequests = new ArrayList<>();
 
-
     public void save(PermissionToLeaveRequest request) {
         permissionToLeaveRequests.add(request);
     }
@@ -19,7 +18,5 @@ public class PermissionToLeaveRequestDAOImpl implements PermissionToLeaveRequest
         return new ArrayList<>(permissionToLeaveRequests);
     }
 
-    public void clear() {
-        permissionToLeaveRequests.clear();
-    }
+
 }

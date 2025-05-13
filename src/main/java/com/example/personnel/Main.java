@@ -10,17 +10,21 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
+
+
         Scanner scanner = new Scanner(System.in);
         DisplayOffPersonnel service = new DisplayOffPersonnel(new PermissionToLeaveRequestDAOImpl());
 
-        while (true) {
-            System.out.println("\n*=*=*=*=*=* MAIN *=*=*=*=*=*");
-            System.out.println("SHOW PERSON WHO SEND REQUESTS TO LEAVE");
-            System.out.println("ACCEPT OR REJECT THE REQUESTS");
-            System.out.println("EXIT");
+        boolean running = true;
+
+        while (running) {
+            System.out.println("\n*=*=*=*=*=* MAIN MENU *=*=*=*=*=*");
+            System.out.println("1. Submit Leave Requests");
+            System.out.println("2. Accept or Reject Leave Requests");
+            System.out.println("3. Exit");
             System.out.print("CHOOSE YOUR OPTION: ");
 
-            String choice = scanner.nextLine();
+            String choice = scanner.nextLine().trim();
 
             switch (choice) {
                 case "1":
@@ -28,30 +32,31 @@ public class Main {
                     break;
 
                 case "2":
+                    System.out.println("Do you want to accept or reject the requests?");
+                    System.out.println("Enter 1 for ACCEPT, 2 for REJECT:");
                     String input = scanner.nextLine().trim();
 
                     AcceptanceEnum action = null;
 
                     if (input.equals("1")) {
                         action = AcceptanceEnum.ACCEPT;
-                    }
-                    else if (input.equals("2")) {
+                    } else if (input.equals("2")) {
                         action = AcceptanceEnum.REJECT;
-                    }
-                    else {
-                        System.out.println("not valid!!!!!");
+                    } else {
+                        System.out.println("Invalid input! Try again.");
                         break;
                     }
 
                     service.acceptOrDenyPersonnelRequests(action);
                     break;
+
                 case "3":
-                    System.out.println("EXIT\nSEE YOU SOON");
-                    scanner.close();
-                    return;
+                    System.out.println("Exiting... See you soon!");
+                    running = false;
+                    break;
 
                 default:
-                    System.out.println("ENTER A VALID CHOICE");
+                    System.out.println("Please enter a valid choice (1, 2, or 3).");
             }
         }
     }

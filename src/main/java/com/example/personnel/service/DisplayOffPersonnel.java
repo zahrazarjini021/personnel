@@ -3,6 +3,7 @@ package com.example.personnel.service;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import com.example.personnel.dao.impl.PermissionToLeaveRequestDAOImpl;
 import com.example.personnel.entity.AcceptanceEnum;
@@ -11,63 +12,71 @@ import com.example.personnel.entity.Person;
 
 public class DisplayOffPersonnel {
 
-
-    private final PermissionToLeaveRequestDAOImpl requestDAO = new PermissionToLeaveRequestDAOImpl();
+    private final PermissionToLeaveRequestDAOImpl requestDAO;
 
     public DisplayOffPersonnel(PermissionToLeaveRequestDAOImpl permissionToLeaveRequestDAO) {
+        this.requestDAO = permissionToLeaveRequestDAO;
     }
 
     public List<Person> listOfPersonRequestsToLeave() {
+        Scanner scanner = new Scanner(System.in);
         List<Person> people = new ArrayList<>();
 
-        Person person1 = new Person("zahra", "zarjini", "1234567890", "11111");
-        Person person2 = new Person("mobina", "zahdi", "0987654321", "121212");
+        System.out.print("How many people want to request leave? ");
+        int count = Integer.parseInt(scanner.nextLine().trim());
 
-        people.add(person1);
-        people.add(person2);
+        for (int i = 0; i < count; i++) {
+            System.out.println("\nEnter info for person #" + (i + 1));
 
-        PermissionToLeaveRequest request1 = new PermissionToLeaveRequest(person1,
-                LocalDate.of(2025, 5, 1),
-                LocalDate.of(2025, 5, 3));
+            System.out.print("First name: ");
+            String firstName = scanner.nextLine().trim();
 
-        PermissionToLeaveRequest request2 = new PermissionToLeaveRequest(person2,
-                LocalDate.of(2025, 5, 1),
-                LocalDate.of(2025, 5, 3));
+            System.out.print("Last name: ");
+            String lastName = scanner.nextLine().trim();
 
-        requestDAO.save(request1);
-        requestDAO.save(request2);
+            System.out.print("National code: ");
+            String nationalCode = scanner.nextLine().trim();
 
-        System.out.println("all personnel:");
-        for (Person p : people) {
-            System.out.println(p);
+            System.out.print("Personnel code: ");
+            String personnelCode = scanner.nextLine().trim();
+
+            System.out.print("Leave start date (yyyy-mm-dd): ");
+            LocalDate fromDate = LocalDate.parse(scanner.nextLine().trim());
+
+            System.out.print("Leave end date (yyyy-mm-dd): ");
+            LocalDate toDate = LocalDate.parse(scanner.nextLine().trim());
+
+            Person person = new Person(firstName, lastName, nationalCode, personnelCode);
+            PermissionToLeaveRequest request = new PermissionToLeaveRequest(person, fromDate, toDate);
+
+            people.add(person);
+            requestDAO.save(request);
         }
 
-        System.out.println("\npersonnel who request to leave:");
-        for (PermissionToLeaveRequest leaveRequest : requestDAO.findAll()) {
-            System.out.println(leaveRequest);
+        System.out.println("\nPeople who have submitted leave requests:");
+        for (PermissionToLeaveRequest request : requestDAO.findAll()) {
+            System.out.println(request);
         }
 
         return people;
     }
 
-    /*
-    update
-     */
-
     public void acceptOrDenyPersonnelRequests(AcceptanceEnum action) {
-        System.out.println("\nPROCESSING REQUESTS...");
+        List<PermissionToLeaveRequest> requests = requestDAO.findAll();
 
-        for (PermissionToLeaveRequest request : requestDAO.findAll()) {
+        if (requests.isEmpty()) {
+            System.out.println("No leave requests found.");
+            return;
+        }
 
+        for (PermissionToLeaveRequest request : requests) {
             if (action == AcceptanceEnum.ACCEPT) {
                 request.setAcceptedOrRejected(true);
-                System.out.println("LEAVING REQUEST ACCEPTED");
-            }
-            else if (action == AcceptanceEnum.REJECT) {
+                System.out.println("Accepted: " + request.getPerson().getFirstName());
+            } else {
                 request.setAcceptedOrRejected(false);
-                System.out.println("LEAVING REQUEST REJECTED");
+                System.out.println("Rejected: " + request.getPerson().getFirstName());
             }
         }
     }
-
 }
