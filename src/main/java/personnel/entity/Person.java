@@ -1,12 +1,12 @@
 
-package com.example.personnel.entity;
+package personnel.entity;
 
 
 import java.util.UUID;
 
 public class Person {
 
-    private String personId;
+    private Integer personId;
     private String firstName;
     private String lastName;
     private String nationalCode;
@@ -20,6 +20,13 @@ public class Person {
         this.personnelCode = personnelCode;
     }
 
+    public Person() {
+    }
+
+    public void setPersonId(Integer personId) {
+        this.personId = personId;
+    }
+
     @Override
     public String toString() {
         return firstName + " " + lastName + " - " + personnelCode;
@@ -29,7 +36,7 @@ public class Person {
         return UUID.randomUUID().toString();
     }
 
-    public String getPersonId() {
+    public Integer getPersonId() {
         return personId;
     }
 

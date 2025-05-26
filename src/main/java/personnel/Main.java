@@ -1,9 +1,9 @@
 
-package com.example.personnel;
+package personnel;
 
-import com.example.personnel.dao.impl.PermissionToLeaveRequestDAOImpl;
-import com.example.personnel.entity.AcceptanceEnum;
-import com.example.personnel.service.DisplayOffPersonnel;
+import personnel.dao.impl.PermissionToLeaveRequestDAOImpl;
+import personnel.entity.AcceptanceEnum;
+import personnel.service.DisplayOffPersonnel;
 
 import java.util.Scanner;
 

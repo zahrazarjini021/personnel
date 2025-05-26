@@ -1,4 +1,4 @@
-package com.example.personnel.entity;
+package personnel.entity;
 
 public enum AcceptanceEnum {
 

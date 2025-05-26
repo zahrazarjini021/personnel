@@ -1,6 +1,6 @@
-package com.example.personnel.dao;
+package personnel.dao;
 
-import com.example.personnel.entity.PermissionToLeaveRequest;
+import personnel.entity.PermissionToLeaveRequest;
 
 import java.util.List;
 

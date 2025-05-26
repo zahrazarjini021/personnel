@@ -1,5 +1,5 @@
 
-package com.example.personnel.entity;
+package personnel.entity;
 
 import java.time.LocalDate;
 
@@ -15,7 +15,9 @@ public class PermissionToLeaveRequest {
         this.fromDate = fromDate;
         this.toDate = toDate;
         this.acceptedOrRejected = false;
+    }
 
+    public PermissionToLeaveRequest() {
     }
 
     public Person getPerson() {

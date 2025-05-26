@@ -1,14 +1,14 @@
-package com.example.personnel.service;
+package personnel.service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import com.example.personnel.dao.impl.PermissionToLeaveRequestDAOImpl;
-import com.example.personnel.entity.AcceptanceEnum;
-import com.example.personnel.entity.PermissionToLeaveRequest;
-import com.example.personnel.entity.Person;
+import personnel.dao.impl.PermissionToLeaveRequestDAOImpl;
+import personnel.entity.AcceptanceEnum;
+import personnel.entity.PermissionToLeaveRequest;
+import personnel.entity.Person;
 
 public class DisplayOffPersonnel {
 
