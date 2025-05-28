@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import personnel.dao.PermissionToLeaveRequestDAO;
 import personnel.dao.impl.PermissionToLeaveRequestDAOImpl;
 import personnel.entity.AcceptanceEnum;
 import personnel.entity.PermissionToLeaveRequest;
@@ -12,9 +13,9 @@ import personnel.entity.Person;
 
 public class DisplayOffPersonnel {
 
-    private final PermissionToLeaveRequestDAOImpl requestDAO;
+    private final PermissionToLeaveRequestDAO  requestDAO;
 
-    public DisplayOffPersonnel(PermissionToLeaveRequestDAOImpl permissionToLeaveRequestDAO) {
+    public DisplayOffPersonnel(PermissionToLeaveRequestDAO permissionToLeaveRequestDAO) {
         this.requestDAO = permissionToLeaveRequestDAO;
     }
 

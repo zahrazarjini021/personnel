@@ -1,6 +1,7 @@
 
 package personnel;
 
+import personnel.dao.PermissionToLeaveRequestProxy;
 import personnel.dao.impl.PermissionToLeaveRequestDAOImpl;
 import personnel.entity.AcceptanceEnum;
 import personnel.service.DisplayOffPersonnel;
@@ -13,7 +14,7 @@ public class Main {
 
 
         Scanner scanner = new Scanner(System.in);
-        DisplayOffPersonnel service = new DisplayOffPersonnel(new PermissionToLeaveRequestDAOImpl());
+        DisplayOffPersonnel service = new DisplayOffPersonnel(new PermissionToLeaveRequestProxy());
 
         boolean running = true;
 
